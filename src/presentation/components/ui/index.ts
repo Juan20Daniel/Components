@@ -5,3 +5,4 @@ export { Card } from "./Card";
 export { Button } from "./Button";
 export { CustomSwitch } from "./CustomSwitch";
 export { SubTitle } from "./SubTitle";
+export { FadeinImage } from "./FadeinImage";
