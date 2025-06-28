@@ -1,11 +1,9 @@
-import { Card, CustomSwitch, CustomView } from '../../components/ui';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useState } from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Card, CustomSwitch, CustomView } from '../../components/ui';
 
 export const SwitchScreen = () => {
     const { top } = useSafeAreaInsets();
-    // const [isEnabled, setIsEnabled] = useState(false);
-    // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
     const [ state, setState ] = useState({
         isActive:true,
@@ -13,8 +11,8 @@ export const SwitchScreen = () => {
         isHappy: true
     }) 
     return (
-        <CustomView customStyle={{marginTop:top+20, paddingHorizontal: 10, paddingTop:10, gap: 10,}}>
-            <Card>
+        <CustomView customStyle={{paddingHorizontal: 10, paddingTop:10, gap: 10,}}>
+            <Card customStyles={{marginTop:top+20}}>
                 <CustomSwitch 
                     isOn={state.isActive}
                     toggleSwitch={() => setState({...state, isActive:!state.isActive })}

@@ -1,6 +1,8 @@
-import { Text, View } from 'react-native';
-import { colors, globalStyles } from '../../../config/theme/globalStyles';
+import { Text } from 'react-native';
+import { globalStyles } from '../../../config/theme/globalStyles';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface Props {
     text:string;
@@ -9,6 +11,7 @@ interface Props {
 }
 
 export const Title = ({text, safe=false, white=false}:Props) => {
+    const { colors } = useContext(ThemeContext);
     const { top } = useSafeAreaInsets();
     return (
         <Text style={{

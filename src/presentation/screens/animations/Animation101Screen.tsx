@@ -1,12 +1,15 @@
 import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors } from '../../../config/theme/globalStyles';
 import { useAnimation } from '../../hooks/useAnimation';
+import { CustomView } from '../../components/ui';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const Animation101Screen = () => {
     const { animatenOpacity, animatedTop, fadeIn, fadeOut, startMovingTopPosition } = useAnimation();
-
+    const { colors } = useContext(ThemeContext); 
     return (
-        <View style={styles.container}>
+        <CustomView customStyle={styles.container}>
             <Animated.View 
                 style={[
                     styles.purpleBox,
@@ -24,12 +27,12 @@ export const Animation101Screen = () => {
                     duration:500,
                     easing:Easing.elastic(2)});
             }} style={{marginTop:10}}>
-                <Text>FadeIn</Text>
+                <Text style={{color:colors.text}}>FadeIn</Text>
             </Pressable>
             <Pressable onPress={() => fadeOut({})} style={{marginTop:10}}>
-                <Text>FadeOut</Text>
+                <Text style={{color:colors.text}}>FadeOut</Text>
             </Pressable>
-        </View>
+        </CustomView>
     );
 }
 
@@ -45,20 +48,3 @@ const styles = StyleSheet.create({
         height: 150,
     }
 });
-
-//  const animatenOpacity = useRef(new Animated.Value(1)).current;
-//  const animatenTop = useRef(new Animated.Value(-200)).current;
-// const fadeIn = () => {
-    //      Animated.timing(animatenTop, {
-    //         toValue: 0,
-    //         duration: 700,
-    //         useNativeDriver: true,
-    //         easing: Easing.bounce,
-    //     }).start()
-
-    //     Animated.timing(animatenOpacity,{
-    //         toValue: 1,
-    //         duration: 1000,
-    //         useNativeDriver: true
-    //     }).start();
-    // }
