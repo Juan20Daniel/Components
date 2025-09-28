@@ -1,8 +1,8 @@
-
-import { ScrollView, Text, TextInput, View } from 'react-native';
+import { ScrollView, Text, TextInput } from 'react-native';
 import { Card, CustomView, Title } from '../../components/ui';
 import { globalStyles } from '../../../config/theme/globalStyles';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const TextInputScreen = () => {
     const [ form, setForm ] = useState({
@@ -10,13 +10,15 @@ export const TextInputScreen = () => {
         email:'',
         phone:'',
     });
+    const { colors } = useContext(ThemeContext);
     return (
         <ScrollView>
             <CustomView customStyle={{gap:10, marginBottom:60}}>
                 <Title text='TextInput' safe />
                 <Card>
                     <TextInput 
-                        style={globalStyles.input}
+                        style={{...globalStyles.input, borderColor:colors.text, color:colors.text}}
+                        placeholderTextColor={colors.text}
                         placeholder='Escribe tu jodido nombre puta'
                         autoCapitalize='words'
                         autoCorrect={false}
@@ -24,7 +26,8 @@ export const TextInputScreen = () => {
                         onChangeText={value => setForm({...form, name:value})}
                     />
                     <TextInput 
-                        style={globalStyles.input}
+                        style={{...globalStyles.input, borderColor:colors.text, color:colors.text}}
+                        placeholderTextColor={colors.text}
                         placeholder='Escribe tu jodido email puta'
                         autoCapitalize='none'
                         value={form.email}
@@ -32,7 +35,8 @@ export const TextInputScreen = () => {
                         keyboardType='email-address'
                     />  
                     <TextInput 
-                        style={globalStyles.input}
+                        style={{...globalStyles.input, borderColor:colors.text, color:colors.text}}
+                        placeholderTextColor={colors.text}
                         placeholder='Escribe tu jodido teléfono puta'
                         autoCapitalize='none'
                         autoCorrect={false}
@@ -42,14 +46,14 @@ export const TextInputScreen = () => {
                     />
                 </Card>
                 <Card>
-                    <Text>{JSON.stringify(form, null, 2)}</Text>
-                    <Text>{JSON.stringify(form, null, 2)}</Text>
-                    <Text>{JSON.stringify(form, null, 2)}</Text>
-                    <Text>{JSON.stringify(form, null, 2)}</Text>
-                    <Text>{JSON.stringify(form, null, 2)}</Text>
-                    <Text>{JSON.stringify(form, null, 2)}</Text>
-                    <Text>{JSON.stringify(form, null, 2)}</Text>
-                    <Text>{JSON.stringify(form, null, 2)}</Text>
+                    <Text style={{color:colors.text}}>{JSON.stringify(form, null, 2)}</Text>
+                    <Text style={{color:colors.text}}>{JSON.stringify(form, null, 2)}</Text>
+                    <Text style={{color:colors.text}}>{JSON.stringify(form, null, 2)}</Text>
+                    <Text style={{color:colors.text}}>{JSON.stringify(form, null, 2)}</Text>
+                    <Text style={{color:colors.text}}>{JSON.stringify(form, null, 2)}</Text>
+                    <Text style={{color:colors.text}}>{JSON.stringify(form, null, 2)}</Text>
+                    <Text style={{color:colors.text}}>{JSON.stringify(form, null, 2)}</Text>
+                    <Text style={{color:colors.text}}>{JSON.stringify(form, null, 2)}</Text>
                 </Card>
                 <TextInput 
                         style={globalStyles.input}

@@ -12,7 +12,6 @@ interface Props {
 
 export const CustomView = ({children, customStyle, margin=true}:Props) => {
   const { colors } = useContext(ThemeContext);
-  console.log(colors);
   return (
     <View style={[
       globalStyles.mainContainer, 

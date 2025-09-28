@@ -1,26 +1,31 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import StackNavigator from "./presentation/navigator/StackNavigator";
-import { StatusBar } from "react-native";
 import { PropsWithChildren } from "react";
 import { ThemeProvider } from "./presentation/context/ThemeContext";
 
-const AppState = ({children}:PropsWithChildren) => {
+const AppTheme = ({children}:PropsWithChildren) => {
   return (
     <NavigationContainer>
-      <ThemeProvider>
-        {children}
-      </ThemeProvider>
+      {children}
     </NavigationContainer>
+  )
+}
+
+const AppState = ({children}:PropsWithChildren) => {
+  return (
+    <ThemeProvider>
+      {children}
+    </ThemeProvider>
   )
 }
 
 const App = () => {
   return (
-    <>
-      <AppState>
+    <AppState>
+      <AppTheme>
         <StackNavigator />
-      </AppState>
-    </>
+      </AppTheme>
+    </AppState>
   );
 }
 

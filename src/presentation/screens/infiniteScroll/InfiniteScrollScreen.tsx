@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { ActivityIndicator, FlatList, Image, StatusBar, View } from 'react-native';
 import { colors } from '../../../config/theme/globalStyles';
 import { FadeinImage } from '../../components/ui';
+import { ThemeContext } from '../../context/ThemeContext';
 
 export const InfiniteScrollScreen = () => {
     const [ number, setNumber ] = useState([0,1,2,3,4,5,6,7]);
+    const { colors } = useContext(ThemeContext);
     const loadMore = () => {
         const newNumbers = Array.from({length:5}, (_, i) => number.length + i);
         setTimeout(() => {
@@ -12,7 +14,7 @@ export const InfiniteScrollScreen = () => {
         },1000);
     }
     return (
-        <View>
+        <View style={{backgroundColor:colors.background}}>
             <StatusBar barStyle='light-content' />
             <FlatList 
                 data={number}
@@ -31,7 +33,7 @@ export const InfiniteScrollScreen = () => {
                             justifyContent:'flex-start' 
                         }} 
                     >
-                        <ActivityIndicator size={60} color='black' />
+                        <ActivityIndicator size={60} color={colors.text} />
                     </View>
                 )}
             />
@@ -46,10 +48,12 @@ interface ListItemProps {
 const ListItem = ({number}:ListItemProps) => (
     <FadeinImage 
         uri={`https://picsum.photos/id/${number}/500/400`}
-        customStyle={{width:'100%', height: 300, backgroundColor:colors.primary, marginBottom:10, objectFit:'cover'} }
+        customStyle={{
+            width:'100%', 
+            height: 300, 
+            backgroundColor:colors.primary, 
+            marginBottom:10, 
+            objectFit:'cover'
+        }}
     />
-    // <Image
-    //     style={{flex:1, height: 300, backgroundColor:colors.primary, marginBottom:10, objectFit:'cover'}} 
-    //     source={{uri:`https://picsum.photos/id/${number}/500/400`}}
-    // />
 );

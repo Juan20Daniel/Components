@@ -1,15 +1,15 @@
-
+import { useContext, useRef, useState } from 'react';
 import { FlatList, Image, NativeScrollEvent, NativeSyntheticEvent, Text, useWindowDimensions, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { colors, globalStyles } from '../../../config/theme/globalStyles';
-import * as data from './data';
+import { ThemeContext } from '../../context/ThemeContext';
+import { globalStyles } from '../../../config/theme/globalStyles';
 import { Button } from '../../components/ui';
-import { useRef, useState } from 'react';
+import * as data from './data';
 
 export const SlidesScreen = () => {
     const [ currentSliceIndex, setCurrentSliceIndex ] = useState(0);
+    const { colors } = useContext(ThemeContext);
     const flatListRef = useRef<FlatList>(null);
-    const {top} = useSafeAreaInsets();
+
     const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const { contentOffset, layoutMeasurement } = event.nativeEvent;
         const currentIndex = Math.floor(contentOffset.x / layoutMeasurement.width);
@@ -18,13 +18,12 @@ export const SlidesScreen = () => {
     const doScroll = (index:number) => {
         if(!flatListRef.current) return;
 
-        flatListRef.current.scrollToIndex({index, animated:true})
+        flatListRef.current.scrollToIndex({index, animated:true});
     }
     return (
         <View style={{
             flex:1,
             backgroundColor: colors.background,
-            marginTop:top,
         }}>
             <FlatList 
                 ref={flatListRef}
@@ -53,17 +52,17 @@ interface SlideItemProps {
 }
 
 const SliderItem = ({item}:SlideItemProps) => {
+    const { colors } = useContext(ThemeContext);
     const {width} = useWindowDimensions();
     const { title, img, desc } = item;
     return (
         <View 
             style={{
-                backgroundColor: 'white',
+                backgroundColor: colors.background,
                 borderRadius: 5,
                 padding: 40,
                 justifyContent: 'center',
                 width:width,
-
             }}
         >
             <Image
@@ -78,12 +77,12 @@ const SliderItem = ({item}:SlideItemProps) => {
             <Text 
                 style={[
                     globalStyles.title,
-                    
+                    {color:colors.text}
                 ]}
             >
                 {title}
             </Text>
-            <Text style={{marginTop:10}}>{desc}</Text>
+            <Text style={{marginTop:10, color:colors.text}}>{desc}</Text>
         </View>
-    )   
+    );
 }

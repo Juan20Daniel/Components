@@ -1,5 +1,5 @@
 
-import { RefreshControl, ScrollView } from 'react-native';
+import { RefreshControl, ScrollView, useWindowDimensions } from 'react-native';
 import { CustomView, Title } from '../../components/ui';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useState } from 'react';
@@ -7,6 +7,7 @@ import { useState } from 'react';
 export const PullToRefreshScreen = () => {
     const [ isRefreshing, setIsRefresing ] = useState(false);
     const { top }  = useSafeAreaInsets();
+    const { height } = useWindowDimensions();
     const onRefresh = () => {
         setIsRefresing(true);
 
@@ -24,7 +25,7 @@ export const PullToRefreshScreen = () => {
                 />
             }
         >
-            <CustomView>
+            <CustomView customStyle={{height}}>
                 <Title text='Pull To Refresh' safe />
             </CustomView>
         </ScrollView>

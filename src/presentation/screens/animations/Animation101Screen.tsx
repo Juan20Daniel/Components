@@ -1,4 +1,4 @@
-import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Pressable, StyleSheet, Text } from 'react-native';
 import { colors } from '../../../config/theme/globalStyles';
 import { useAnimation } from '../../hooks/useAnimation';
 import { CustomView } from '../../components/ui';
@@ -10,22 +10,22 @@ export const Animation101Screen = () => {
     const { colors } = useContext(ThemeContext); 
     return (
         <CustomView customStyle={styles.container}>
-            <Animated.View 
+            <Animated.View
                 style={[
                     styles.purpleBox,
                     {
                         opacity: animatenOpacity,
                         transform: [{translateY: animatedTop}]
                     }
-                ]} 
-
+                ]}
             />
             <Pressable onPress={() => {
                 fadeIn({});
                 startMovingTopPosition({
                     initialPosition:-200, 
                     duration:500,
-                    easing:Easing.elastic(2)});
+                    easing:Easing.elastic(2)
+                });
             }} style={{marginTop:10}}>
                 <Text style={{color:colors.text}}>FadeIn</Text>
             </Pressable>
